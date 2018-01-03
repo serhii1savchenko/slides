@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dropbox.core.DbxException;
+import com.savchenko.slides.DAO.DropboxFilesDAO;
 import com.savchenko.slides.DAO.PresentationDAO;
 
 @Service
@@ -21,7 +22,7 @@ public class PresentationService {
 	
 	@Autowired
 	PresentationDAO presentationDao;
-
+	
 	public void uploadAndGetIdForNewPresentation(File presentation, String folderName) throws FileNotFoundException, IOException, DbxException {
 		
 		int n = apachePOIService.getNumberOfSlides(presentation);
@@ -30,6 +31,10 @@ public class PresentationService {
 		dropboxService.createFolderAndUploadImages(folderName, images);
 		
 		presentationDao.insertData(folderName, n);
+	}
+
+	public int getNumberOfSlides(String folderName) {
+		return presentationDao.getNumberOfSlidesByFolderName(folderName);
 	}
 	
 }

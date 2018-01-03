@@ -18,3 +18,5 @@ ALTER TABLE `presentations`
 ALTER TABLE `presentations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT; 
+
+ALTER TABLE `presentations` ADD UNIQUE(`folderName`);

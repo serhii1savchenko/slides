@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.dropbox.core.DbxException;
 import com.savchenko.slides.DAO.DropboxFilesDAO;
+import com.savchenko.slides.Utils.Utils;
 
 @Service
 public class DropboxService {
 	
 	@Autowired
 	DropboxFilesDAO dropboxDao;
+	
+	@Autowired
+	Utils util;
 	
 	public void createFolderAndUploadImages(String folderName, File[] images) throws DbxException, IOException {
 		dropboxDao.createFolder("/"+folderName);
@@ -27,6 +31,14 @@ public class DropboxService {
 			//Files.deleteIfExists(p);
 			System.out.println(curImg.delete());
 		}
+	}
+	
+	public String[] getSlides(String folderName, int numberOfSlides) {
+		File[] files = dropboxDao.readFiles(folderName, numberOfSlides);
+		String[] images = new String[numberOfSlides];
+		for(int i=0; i<numberOfSlides; i++)
+			images[i] = util.encodeBase64(files[i]);
+		return images;
 	}
 	
 }

@@ -1,0 +1,3 @@
+# Vendoring style files
+src/main/webapp/resources/bootstrap-social-gh-pages/* linguist-vendored=true
+src/main/webapp/resources/font-awesome-4.7.0/* linguist-vendored=true

@@ -1,5 +1,6 @@
 package com.savchenko.slides.DAO;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -21,7 +22,7 @@ import com.dropbox.core.v2.users.FullAccount;
 
 @Repository
 public class DropboxFilesDAO {
-	
+
 	private static final String ACCESS_TOKEN = "xxx";
 	private DbxRequestConfig config = new DbxRequestConfig("xxx");
 	DbxClientV2 client = null;
@@ -38,7 +39,7 @@ public class DropboxFilesDAO {
 			dbxe.printStackTrace();
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public void createFolder(String folderName) throws DbxException {
 		try {
@@ -79,7 +80,6 @@ public class DropboxFilesDAO {
 	}
 
 	public void uploadFile(String path, String foldername){
-		// Upload "test.txt" to Dropbox
 		try {
 			InputStream in = new FileInputStream(path);
 			FileMetadata metadata = client.files().uploadBuilder(foldername).uploadAndFinish(in);
@@ -99,8 +99,7 @@ public class DropboxFilesDAO {
 
 	public void readFile(String foldername, String filename, String pathForDownload){
 		try{
-			//output file for download --> storage location on local system to download file
-			FileOutputStream downloadFile = new FileOutputStream("pathForDownload" + filename);
+			FileOutputStream downloadFile = new FileOutputStream(pathForDownload + filename);
 			try {
 				FileMetadata metadata = client.files().downloadBuilder(foldername).download(downloadFile);
 				//System.out.println(metadata.toStringMultiline());
@@ -109,13 +108,38 @@ public class DropboxFilesDAO {
 				downloadFile.close();
 			}
 		}
-		//exception handled
 		catch (DbxException e){
 			e.printStackTrace();
 		}
 		catch (IOException e){
 			e.printStackTrace();
 		}
+	}
+
+	public File[] readFiles(String foldername, int size){
+		File[] images = new File[size];
+
+		for(int i=0; i<size; i++){
+			try{
+				FileOutputStream downloadFile = new FileOutputStream(i+".png");
+				try {
+					FileMetadata metadata = client.files().downloadBuilder("/"+foldername+"/"+i+".png").download(downloadFile);
+					System.out.println("File readed ... OK");
+				} finally{
+					downloadFile.close();
+				}
+			}
+			catch (DbxException e){
+				e.printStackTrace();
+			}
+			catch (IOException e){
+				e.printStackTrace();
+			}
+			
+			images[i] = new File(i+".png");
+		}
+
+		return images;
 	}
 
 	public void deleteFile(String path){
@@ -128,5 +152,5 @@ public class DropboxFilesDAO {
 		}
 	}
 
-	
+
 }
