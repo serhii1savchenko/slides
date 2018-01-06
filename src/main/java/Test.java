@@ -17,8 +17,6 @@ public class Test {
 		dfdao.readFile(folderName + "/RRRRR.docx", "_READED_RRRRR.docx", "D:/");
 		dfdao.deleteFile(folderName+"/RRRRR.docx");
 	*/
-		System.out.println(util.transliterate("ропор рлорлор ролрор орор ііііі"));
 		
 	}
-
 }
