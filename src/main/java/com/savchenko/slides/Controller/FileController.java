@@ -38,7 +38,7 @@ public class FileController {
 		String name = null;
 		System.out.println(file.getContentType().toString());
 		
-		if (!file.isEmpty() && (file.getContentType().toString().equals("application/vnd.openxmlformats-officedocument.presentationml.presentation") || file.getContentType().toString().equals("application/vnd.ms-powerpoint"))) {
+		if ((file!=null) && !file.isEmpty() && (file.getContentType().toString().equals("application/vnd.openxmlformats-officedocument.presentationml.presentation") || file.getContentType().toString().equals("application/vnd.ms-powerpoint"))) {
 			try {
 				byte[] bytes = file.getBytes();
 				
