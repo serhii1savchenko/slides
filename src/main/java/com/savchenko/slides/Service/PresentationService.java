@@ -23,7 +23,7 @@ public class PresentationService {
 	@Autowired
 	PresentationDAO presentationDao;
 	
-	public void uploadAndGetIdForNewPresentation(File presentation, String folderName) throws FileNotFoundException, IOException, DbxException {
+	public void uploadNewPresentation(File presentation, String folderName) throws FileNotFoundException, IOException, DbxException {
 		
 		int n = apachePOIService.getNumberOfSlides(presentation);
 		File[] images = apachePOIService.convertPresentationToImages(presentation);

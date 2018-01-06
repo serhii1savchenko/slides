@@ -2,28 +2,41 @@ package com.savchenko.slides.Model;
 
 public class Slide {
 	
-	private int serialNumber;
+	private int id;
 	private String img;
+	private int nextId;
 	
 	public Slide(){
 	}
 	
-	public Slide(int serialNumber, String img){
-		this.serialNumber = serialNumber;
+	public Slide(int id, String img, int nextId){
+		this.id = id;
 		this.img = img;
+		this.nextId = nextId;
 	}
-	
-	public int getSerialNumber() {
-		return serialNumber;
+
+	public int getId() {
+		return id;
 	}
-	public void setSerialNumber(int serialNumber) {
-		this.serialNumber = serialNumber;
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
 	public String getImg() {
 		return img;
 	}
+
 	public void setImg(String img) {
 		this.img = img;
 	}
-		
+
+	public int getNextId() {
+		return nextId;
+	}
+
+	public void setNextId(int nextId) {
+		this.nextId = nextId;
+	}
+	
 }

@@ -36,8 +36,9 @@ public class FileController {
 	public String uploadFile(@RequestParam("file") MultipartFile file, Model model) {
 
 		String name = null;
+		System.out.println(file.getContentType().toString());
 		
-		if (!file.isEmpty() && file.getContentType().toString().equals("application/vnd.openxmlformats-officedocument.presentationml.presentation")) {
+		if (!file.isEmpty() && (file.getContentType().toString().equals("application/vnd.openxmlformats-officedocument.presentationml.presentation") || file.getContentType().toString().equals("application/vnd.ms-powerpoint"))) {
 			try {
 				byte[] bytes = file.getBytes();
 				
@@ -66,7 +67,7 @@ public class FileController {
 				stream.flush();
 				stream.close();
 				
-				presServ.uploadAndGetIdForNewPresentation(uploadedFile, name);
+				presServ.uploadNewPresentation(uploadedFile, name);
 				
 				Path path = Paths.get(filePath);
 				Files.deleteIfExists(path);
@@ -79,7 +80,7 @@ public class FileController {
 				return "errorPageBadFile";
 			}
 		} else {
-			model.addAttribute("msg", "Empty or too large file or it isn't a MS Office Presentation!");
+			model.addAttribute("msg", "Document is empty or it isn't a .PPTX / .PPS MS OFFICE presentation...");
 			return "errorPageBadFile";
 		}
 	}

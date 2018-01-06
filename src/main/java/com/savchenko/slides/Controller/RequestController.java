@@ -28,7 +28,7 @@ public class RequestController {
 			return "errorPageBadFile";
 		}else {
 			model.addAttribute("numberOfSlides", numberOfSlides);
-			model.addAttribute("slidesArray", dropboxService.getSlides(folderName, numberOfSlides));			// slides as images
+			model.addAttribute("slidesArray", dropboxService.getSlides(folderName, numberOfSlides));			// slides as Base64 encoded Strings
 			return "view";
 		}
 	}
