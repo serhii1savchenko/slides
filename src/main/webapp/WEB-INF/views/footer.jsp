@@ -16,8 +16,6 @@
 			</a>
 		</p>
 	</center>
-
 </div>
-
 </body>
 </html>

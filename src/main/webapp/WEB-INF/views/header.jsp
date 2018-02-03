@@ -26,6 +26,7 @@
 		<script type="text/javascript"> var domainURL = window.location.protocol + "//"  + window.location.host + /* "" + window.location.pathname; */ "/"; </script>
 </head>
 <body>
+	<br />
 	<center>
 		<a href="" id="home"><img src = "${pageContext.request.contextPath}/resources/images/new.png" style="padding-top: 5px; padding-bottom: 5px; max-width: 100%; height: auto;"/></a>
 		<script type="text/javascript">

@@ -11,45 +11,43 @@
 <script>
 var currentSlide = 0;
 var lastSlideId = "";
-var elements;
-
-    function load() {
-		elements = $('[id^="img_"]');
-    	//alert(elements.length);
-    	jQuery.each(elements, function( i, val ) {
-			if (i>0){
-				document.getElementById("img_"+i).style.display = 'none';
-    		}
-    	});
-    	// Initialization of JS var
-    	lastSlideId = document.getElementById("nos").innerHTML - 1;
-    }
-    window.onload = load;
-     
-    function checkKey(e) {
-        e = e || window.event;
-        if (e.keyCode == '38') {				// UP
-			if(currentSlide != lastSlideId){
-				showNext((currentSlide+1));
-			}else{
-				showNext(0);
-			}
-        }
-        else if (e.keyCode == '40') {			// DOWN
-        	showPrev();
-        }
-        else if (e.keyCode == '37') {			// LEFT
-			showPrev();
-        }
-        else if (e.keyCode == '39') {			// RIGHT
-        	if(currentSlide != lastSlideId){
-				showNext((currentSlide+1));
-			}else{
-				showNext(0);
-			}
-         }
-	}
-    document.onkeydown = checkKey;
+      function load() {
+    	  var elements = $('[id^="img_"]');
+    	  //alert(elements.length);
+    	  jQuery.each(elements, function( i, val ) {
+    		  if (i>0){
+    		  document.getElementById("img_"+i).style.display = 'none';
+    		  }
+    		});
+    	  // Initialization of JS var
+    	  lastSlideId = document.getElementById("nos").innerHTML - 1;
+      }
+      window.onload = load;
+      
+      function checkKey(e) {
+          e = e || window.event;
+          if (e.keyCode == '38') {				// UP
+        	  if(currentSlide != lastSlideId){
+        		  showNext((currentSlide+1));
+        	  }else{
+        		  showNext(0);
+        	  }
+          }
+          else if (e.keyCode == '40') {			// DOWN
+        	  showPrev();
+          }
+          else if (e.keyCode == '37') {			// LEFT
+        	  showPrev();
+          }
+          else if (e.keyCode == '39') {			// RIGHT
+        	  if(currentSlide != lastSlideId){
+        		  showNext((currentSlide+1));
+        	  }else{
+        		  showNext(0);
+        	  }
+          }
+      }
+      document.onkeydown = checkKey;
 </script>
 </head>
 
@@ -66,18 +64,20 @@ var elements;
 
 <script type="text/javascript">
 function showNext(id){
-	jQuery.each(elements, function( i, val ) {
-		document.getElementById("img_"+i).style.display = 'none';
-	});
-	jQuery.each(elements, function( i, val ) {
-		if (i==id){
-			document.getElementById("img_"+i).style.display = '';
-			currentSlide = i;
-		 }
-	});
+	var elements = $('[id^="img_"]');
+	  jQuery.each(elements, function( i, val ) {
+		  document.getElementById("img_"+i).style.display = 'none';
+		});
+	  jQuery.each(elements, function( i, val ) {
+		  if (i==id){
+		  document.getElementById("img_"+i).style.display = '';
+		  currentSlide = i;
+		  }
+		});
 }
 
 function showPrev(){
+	var elements = $('[id^="img_"]');
 	jQuery.each(elements, function( i, val ) {
 		  document.getElementById("img_"+i).style.display = 'none';
 	});
